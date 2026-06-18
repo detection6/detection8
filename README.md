@@ -8,3 +8,7 @@
 - 页面不依赖外部脚本、字体、图片、接口或数据库。
 
 客户资料由私有仓库 `detection8-admin` 的手机管理流程生成和发布。
+
+手机录入助手：
+
+`https://detection6.github.io/detection8/admin/`
