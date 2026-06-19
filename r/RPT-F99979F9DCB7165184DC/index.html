@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow,noarchive">
   <meta
     http-equiv="Content-Security-Policy"
-    content="default-src 'none'; script-src 'sha256-vD6tLlRnidyHrKLNfJ7OM+BJPi+Eg40vcS1wUrHEagw='; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"
+    content="default-src 'none'; script-src 'sha256-+q3qpW0fij9qZYlJaq8fLAqL0dLOTEgWrNS8dB/neP0='; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"
   >
   <meta name="report-id" content="RPT-F99979F9DCB7165184DC">
   <meta name="report-iv" content="Izb76MRZjJZsT9-i">
@@ -131,20 +131,26 @@
       position: relative;
       flex: 0 0 auto;
       width: 64px;
-      height: 74px;
-      background: linear-gradient(145deg, #50c873, #27a94e);
-      clip-path: polygon(50% 0, 91% 17%, 87% 66%, 70% 86%, 50% 100%, 30% 86%, 13% 66%, 9% 17%);
+      height: 72px;
+      background: linear-gradient(145deg, #5ed27b 0%, #35b95a 48%, #209b45 100%);
+      clip-path: polygon(50% 0, 87% 14%, 87% 46%, 78% 72%, 50% 98%, 22% 72%, 13% 46%, 13% 14%);
     }
     .result-shield::before {
       content: "";
       position: absolute;
-      width: 30px;
-      height: 16px;
-      left: 17px;
+      width: 31px;
+      height: 17px;
+      left: 16px;
       top: 24px;
-      border-left: 6px solid #fff;
-      border-bottom: 6px solid #fff;
+      border-left: 7px solid #fff;
+      border-bottom: 7px solid #fff;
       transform: rotate(-45deg);
+    }
+    .result-panel {
+      align-items: center;
+    }
+    .result-copy {
+      min-width: 0;
     }
     .result-copy strong {
       display: block;
@@ -156,14 +162,15 @@
     .result-copy p {
       margin: 12px 0 0;
       color: #202020;
-      font-size: 21px;
+      font-size: 18px;
       line-height: 1.6;
+      white-space: nowrap;
     }
     .clock {
       position: relative;
       flex: 0 0 auto;
-      width: 49px;
-      height: 49px;
+      width: 54px;
+      height: 54px;
       margin-left: 5px;
       border: 4px solid var(--blue);
       border-radius: 50%;
@@ -172,27 +179,36 @@
       content: "";
       position: absolute;
       width: 4px;
-      height: 13px;
-      left: 19px;
-      top: 8px;
+      height: 16px;
+      left: 21px;
+      top: 9px;
       border-radius: 2px;
       background: var(--blue);
     }
     .clock::after {
       content: "";
       position: absolute;
-      width: 12px;
+      width: 15px;
       height: 4px;
-      left: 20px;
-      top: 21px;
+      left: 23px;
+      top: 24px;
       border-radius: 2px;
       background: var(--blue);
-      transform: rotate(28deg);
+      transform: rotate(26deg);
       transform-origin: left center;
+    }
+    .time-panel {
+      align-items: center;
     }
     .time-copy {
       font-size: 25px;
       line-height: 1.7;
+    }
+    .time-label, .time-value {
+      display: block;
+    }
+    .time-value {
+      margin-top: 2px;
     }
     .statement {
       display: block;
@@ -224,33 +240,40 @@
     .error { color: #b42318; }
     [hidden] { display: none !important; }
     @media (max-width: 640px) {
-      .brand { gap: 15px; padding: 24px 18px 21px; }
-      .brand-shield { width: 49px; height: 57px; font-size: 27px; }
-      .brand-copy h1 { font-size: 27px; }
-      .brand-copy p { margin-top: 8px; font-size: 16px; }
-      .title-band { padding: 22px 16px; font-size: 29px; }
-      main { padding: 24px 14px 40px; }
+      .brand { gap: 13px; padding: 16px 18px 14px; }
+      .brand-shield { width: 42px; height: 49px; font-size: 23px; }
+      .brand-copy h1 { font-size: 25px; }
+      .brand-copy p { margin-top: 5px; font-size: 14px; }
+      .title-band { padding: 16px 16px; font-size: 26px; }
+      main { padding: 16px 12px 24px; }
       .report-table { grid-template-columns: 118px minmax(0, 1fr); }
-      .cell { min-height: 78px; padding: 15px 14px; font-size: 18px; }
-      .label { font-size: 18px; }
-      .panel { gap: 18px; margin-top: 18px; padding: 22px 18px; }
-      .result-shield { width: 48px; height: 56px; }
-      .result-shield::before { width: 23px; height: 12px; left: 12px; top: 18px; border-width: 0 0 5px 5px; }
-      .result-copy strong { font-size: 21px; }
-      .result-copy p { margin-top: 8px; font-size: 14px; }
-      .clock { width: 39px; height: 39px; margin-left: 2px; border-width: 4px; }
-      .clock::before { left: 14px; top: 6px; height: 12px; }
-      .clock::after { left: 15px; top: 17px; width: 11px; }
-      .time-copy { font-size: 17px; }
-      .statement { padding: 20px 18px; }
-      .statement strong { font-size: 18px; }
-      .statement p { margin-top: 11px; font-size: 14px; }
+      .cell { min-height: 64px; padding: 11px 13px; font-size: 17px; line-height: 1.42; }
+      .label { font-size: 17px; }
+      .panel { gap: 14px; margin-top: 12px; padding: 15px 16px; }
+      .result-panel { gap: 13px; padding-right: 12px; }
+      .result-shield { width: 42px; height: 49px; }
+      .result-shield::before { width: 20px; height: 10px; left: 11px; top: 16px; border-width: 0 0 5px 5px; }
+      .result-copy strong { font-size: 19px; }
+      .result-copy p { margin-top: 5px; font-size: 11px; }
+      .clock { width: 38px; height: 38px; margin-left: 1px; border-width: 3px; }
+      .clock::before { left: 15px; top: 6px; width: 3px; height: 12px; }
+      .clock::after { left: 17px; top: 17px; width: 11px; height: 3px; }
+      .time-copy { font-size: 16px; }
+      .time-value { margin-top: 0; }
+      .statement { padding: 15px 16px; }
+      .statement strong { font-size: 17px; }
+      .statement p { margin-top: 7px; font-size: 13px; }
     }
     @media (max-width: 370px) {
-      .brand-copy h1 { font-size: 24px; }
-      .brand-copy p { font-size: 14px; }
+      .brand-copy h1 { font-size: 23px; }
+      .brand-copy p { font-size: 13px; }
       .report-table { grid-template-columns: 105px minmax(0, 1fr); }
       .cell, .label { font-size: 16px; }
+      .result-panel { gap: 12px; padding-left: 14px; padding-right: 10px; }
+      .result-shield { width: 42px; height: 50px; }
+      .result-shield::before { width: 20px; height: 10px; left: 11px; top: 16px; border-width: 0 0 5px 5px; }
+      .result-copy strong { font-size: 19px; }
+      .result-copy p { font-size: 10px; }
     }
   </style>
 </head>
@@ -284,7 +307,7 @@
           <div id="report-date" class="cell value"></div>
         </section>
 
-        <section class="panel">
+        <section class="panel result-panel">
           <div class="result-shield" aria-hidden="true"></div>
           <div class="result-copy">
             <strong>查询结果：该报告真实有效</strong>
@@ -292,9 +315,12 @@
           </div>
         </section>
 
-        <section class="panel">
+        <section class="panel time-panel">
           <div class="clock" aria-hidden="true"></div>
-          <div class="time-copy">本次查询时间： <span id="query-time"></span></div>
+          <div class="time-copy">
+            <span class="time-label">本次查询时间：</span>
+            <span id="query-time" class="time-value"></span>
+          </div>
         </section>
 
         <section class="panel statement">
@@ -381,7 +407,7 @@
           setText("report-number", report.reportNumber);
           setText("company", report.company);
           setText("sample-name", report.sampleName);
-          setText("model-spec", report.modelSpec || "/");
+          setText("model-spec", report.modelSpec);
           setText("report-date", report.reportDate);
           setText("query-time", queryTime());
           document.title = `检测报告查询 - ${report.reportNumber}`;

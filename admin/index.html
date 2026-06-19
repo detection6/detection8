@@ -167,7 +167,7 @@
 
         <label>
           型号或规格
-          <input id="model-spec" name="model-spec" autocomplete="off" value="/" required>
+          <input id="model-spec" name="model-spec" autocomplete="off" placeholder="填写型号或规格" required>
         </label>
 
         <label>
@@ -244,11 +244,11 @@
           reportNumber: clean(byId("report-number").value, 120),
           company: clean(byId("company").value, 200),
           sampleName: clean(byId("sample-name").value, 120),
-          modelSpec: clean(byId("model-spec").value, 120) || "/",
+          modelSpec: clean(byId("model-spec").value, 120),
           reportDate: byId("report-date").value,
         };
 
-        if (!report.reportNumber || !report.company || !report.sampleName || !report.reportDate) {
+        if (!report.reportNumber || !report.company || !report.sampleName || !report.modelSpec || !report.reportDate) {
           byId("error").textContent = "请先填写完整的报告资料。";
           return;
         }
