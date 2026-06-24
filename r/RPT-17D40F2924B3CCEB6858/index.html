@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'none'; script-src 'sha256-+q3qpW0fij9qZYlJaq8fLAqL0dLOTEgWrNS8dB/neP0='; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"
+  >
+  <meta name="report-id" content="RPT-17D40F2924B3CCEB6858">
+  <meta name="report-iv" content="EhfiQqcpbhaG4_CU">
+  <meta name="report-ciphertext" content="XPrM2VjOgp3yeSK-WtpIiiCrKnIbtTSbH2FzVZOepaC1YMbmUxLH_igyCKnqs8e_LesP7PbH6PAZoQ02xUp8YPLFnH27kEhNdRFa3yCTPihKXjXSDlP3Umzh-c9ZRfP_0tXHJBD5d-Q_y9t6jKM_4hp3nZfhznpG51Xc9v-j9uruyIsk5afjhSKkg-pgqfUZ_JO6XriMymRwsyyMV3KrJyWvX-SELIaJyTsb1Q">
+  <title>检测报告查询系统</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --navy: #08274f;
+      --blue: #0879c9;
+      --blue-deep: #056bb7;
+      --blue-pale: #d9edff;
+      --green: #25a94d;
+      --ink: #101010;
+      --muted: #5d6675;
+      --line: #dbe4ed;
+      --paper: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    html { background: #f7f9fc; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #f7f9fc;
+      font-family: "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      letter-spacing: 0;
+      -webkit-text-size-adjust: 100%;
+    }
+    .page {
+      width: min(100%, 1024px);
+      min-height: 100vh;
+      margin: 0 auto;
+      background: #fff;
+      box-shadow: 0 0 28px rgba(13, 49, 87, .05);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      padding: 38px 28px 34px;
+      background: #fff;
+    }
+    .brand-shield {
+      position: relative;
+      flex: 0 0 auto;
+      width: 76px;
+      height: 88px;
+      display: grid;
+      place-items: center;
+      padding-bottom: 7px;
+      color: #fff;
+      background: linear-gradient(145deg, #118dd5, #056bb7);
+      clip-path: polygon(50% 0, 92% 13%, 88% 66%, 72% 86%, 50% 100%, 28% 86%, 12% 66%, 8% 13%);
+      font-size: 42px;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .brand-copy h1 {
+      margin: 0;
+      color: var(--navy);
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1.15;
+    }
+    .brand-copy p {
+      margin: 12px 0 0;
+      color: #626b79;
+      font-size: 30px;
+      line-height: 1.2;
+    }
+    .title-band {
+      padding: 37px 20px;
+      color: #fff;
+      background: linear-gradient(120deg, #0879c9, #086dbd);
+      text-align: center;
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+    main { padding: 38px 44px 58px; }
+    .report-table {
+      display: grid;
+      grid-template-columns: 265px minmax(0, 1fr);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+      box-shadow: 0 8px 28px rgba(18, 58, 98, .06);
+    }
+    .cell {
+      min-height: 113px;
+      display: flex;
+      align-items: center;
+      padding: 24px 40px;
+      border-bottom: 1px solid var(--line);
+      font-size: 32px;
+      line-height: 1.55;
+      overflow-wrap: anywhere;
+    }
+    .cell:nth-last-child(-n + 2) { border-bottom: 0; }
+    .label {
+      justify-content: center;
+      color: var(--navy);
+      background: linear-gradient(100deg, #e4f3ff, #d5eafe);
+      font-weight: 800;
+      text-align: center;
+    }
+    .value { color: #101010; background: #fff; }
+    .panel {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      margin-top: 28px;
+      padding: 34px 36px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 8px 28px rgba(18, 58, 98, .05);
+    }
+    .result-shield {
+      position: relative;
+      flex: 0 0 auto;
+      width: 64px;
+      height: 72px;
+      background: linear-gradient(145deg, #5ed27b 0%, #35b95a 48%, #209b45 100%);
+      clip-path: polygon(50% 0, 87% 14%, 87% 46%, 78% 72%, 50% 98%, 22% 72%, 13% 46%, 13% 14%);
+    }
+    .result-shield::before {
+      content: "";
+      position: absolute;
+      width: 31px;
+      height: 17px;
+      left: 16px;
+      top: 24px;
+      border-left: 7px solid #fff;
+      border-bottom: 7px solid #fff;
+      transform: rotate(-45deg);
+    }
+    .result-panel {
+      align-items: center;
+    }
+    .result-copy {
+      min-width: 0;
+    }
+    .result-copy strong {
+      display: block;
+      color: var(--green);
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+    .result-copy p {
+      margin: 12px 0 0;
+      color: #202020;
+      font-size: 18px;
+      line-height: 1.6;
+      white-space: nowrap;
+    }
+    .clock {
+      position: relative;
+      flex: 0 0 auto;
+      width: 54px;
+      height: 54px;
+      margin-left: 5px;
+      border: 4px solid var(--blue);
+      border-radius: 50%;
+    }
+    .clock::before {
+      content: "";
+      position: absolute;
+      width: 4px;
+      height: 16px;
+      left: 21px;
+      top: 9px;
+      border-radius: 2px;
+      background: var(--blue);
+    }
+    .clock::after {
+      content: "";
+      position: absolute;
+      width: 15px;
+      height: 4px;
+      left: 23px;
+      top: 24px;
+      border-radius: 2px;
+      background: var(--blue);
+      transform: rotate(26deg);
+      transform-origin: left center;
+    }
+    .time-panel {
+      align-items: center;
+    }
+    .time-copy {
+      font-size: 25px;
+      line-height: 1.7;
+    }
+    .time-label, .time-value {
+      display: block;
+    }
+    .time-value {
+      margin-top: 2px;
+    }
+    .statement {
+      display: block;
+      padding: 28px 28px;
+    }
+    .statement strong {
+      display: block;
+      color: var(--navy);
+      font-size: 25px;
+      font-weight: 800;
+    }
+    .statement p {
+      margin: 15px 0 0;
+      color: #505967;
+      font-size: 20px;
+      line-height: 1.7;
+    }
+    .loading, .error {
+      margin: 0;
+      padding: 44px 28px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--muted);
+      background: #fff;
+      text-align: center;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+    .error { color: #b42318; }
+    [hidden] { display: none !important; }
+    @media (max-width: 640px) {
+      .brand { gap: 13px; padding: 16px 18px 14px; }
+      .brand-shield { width: 42px; height: 49px; font-size: 23px; }
+      .brand-copy h1 { font-size: 25px; }
+      .brand-copy p { margin-top: 5px; font-size: 14px; }
+      .title-band { padding: 16px 16px; font-size: 26px; }
+      main { padding: 16px 12px 24px; }
+      .report-table { grid-template-columns: 118px minmax(0, 1fr); }
+      .cell { min-height: 64px; padding: 11px 13px; font-size: 17px; line-height: 1.42; }
+      .label { font-size: 17px; }
+      .panel { gap: 14px; margin-top: 12px; padding: 15px 16px; }
+      .result-panel { gap: 13px; padding-right: 12px; }
+      .result-shield { width: 42px; height: 49px; }
+      .result-shield::before { width: 20px; height: 10px; left: 11px; top: 16px; border-width: 0 0 5px 5px; }
+      .result-copy strong { font-size: 19px; }
+      .result-copy p { margin-top: 5px; font-size: 11px; }
+      .clock { width: 38px; height: 38px; margin-left: 1px; border-width: 3px; }
+      .clock::before { left: 15px; top: 6px; width: 3px; height: 12px; }
+      .clock::after { left: 17px; top: 17px; width: 11px; height: 3px; }
+      .time-copy { font-size: 16px; }
+      .time-value { margin-top: 0; }
+      .statement { padding: 15px 16px; }
+      .statement strong { font-size: 17px; }
+      .statement p { margin-top: 7px; font-size: 13px; }
+    }
+    @media (max-width: 370px) {
+      .brand-copy h1 { font-size: 23px; }
+      .brand-copy p { font-size: 13px; }
+      .report-table { grid-template-columns: 105px minmax(0, 1fr); }
+      .cell, .label { font-size: 16px; }
+      .result-panel { gap: 12px; padding-left: 14px; padding-right: 10px; }
+      .result-shield { width: 42px; height: 50px; }
+      .result-shield::before { width: 20px; height: 10px; left: 11px; top: 16px; border-width: 0 0 5px 5px; }
+      .result-copy strong { font-size: 19px; }
+      .result-copy p { font-size: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="brand">
+      <div class="brand-shield" aria-hidden="true">检</div>
+      <div class="brand-copy">
+        <h1>检测报告查询系统</h1>
+        <p>官方检测信息查询平台</p>
+      </div>
+    </header>
+
+    <div class="title-band">检测报告查询</div>
+
+    <main>
+      <p id="loading" class="loading">正在验证并读取报告信息...</p>
+      <p id="error" class="error" hidden>二维码无效或报告密钥不正确，请联系报告提供方。</p>
+
+      <div id="report-content" hidden>
+        <section class="report-table" aria-label="检测报告信息">
+          <div class="cell label">报告编号</div>
+          <div id="report-number" class="cell value"></div>
+          <div class="cell label">送检单位</div>
+          <div id="company" class="cell value"></div>
+          <div class="cell label">样品名称</div>
+          <div id="sample-name" class="cell value"></div>
+          <div class="cell label">型号/规格</div>
+          <div id="model-spec" class="cell value"></div>
+          <div class="cell label">报告时间</div>
+          <div id="report-date" class="cell value"></div>
+        </section>
+
+        <section class="panel result-panel">
+          <div class="result-shield" aria-hidden="true"></div>
+          <div class="result-copy">
+            <strong>查询结果：该报告真实有效</strong>
+            <p>本报告数据由检测机构提供，查询结果仅供参考。</p>
+          </div>
+        </section>
+
+        <section class="panel time-panel">
+          <div class="clock" aria-hidden="true"></div>
+          <div class="time-copy">
+            <span class="time-label">本次查询时间：</span>
+            <span id="query-time" class="time-value"></span>
+          </div>
+        </section>
+
+        <section class="panel statement">
+          <strong>声明</strong>
+          <p>1. 本查询结果仅对本次输入的报告编号负责；</p>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script id="report-app">
+    (() => {
+      "use strict";
+
+      const byId = (id) => document.getElementById(id);
+      const reportId = document.querySelector('meta[name="report-id"]').content;
+      const ivText = document.querySelector('meta[name="report-iv"]').content;
+      const ciphertextText = document.querySelector('meta[name="report-ciphertext"]').content;
+
+      const fromBase64Url = (value) => {
+        const normalized = value.replaceAll("-", "+").replaceAll("_", "/");
+        const padded = normalized + "=".repeat((4 - normalized.length % 4) % 4);
+        const binary = atob(padded);
+        return Uint8Array.from(binary, (character) => character.charCodeAt(0));
+      };
+
+      const setText = (id, value) => {
+        byId(id).textContent = String(value || "");
+      };
+
+      const queryTime = () => {
+        const parts = new Intl.DateTimeFormat("zh-CN", {
+          timeZone: "Asia/Shanghai",
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hourCycle: "h23",
+        }).formatToParts(new Date());
+        const part = (type) => parts.find((item) => item.type === type)?.value || "";
+        return `${part("year")}-${part("month")}-${part("day")} ${part("hour")}:${part("minute")}:${part("second")}`;
+      };
+
+      const validateReport = (report) => {
+        const fields = ["reportNumber", "company", "sampleName", "modelSpec", "reportDate"];
+        return report
+          && typeof report === "object"
+          && fields.every((field) => typeof report[field] === "string" && report[field].length <= 200);
+      };
+
+      const showError = () => {
+        byId("loading").hidden = true;
+        byId("report-content").hidden = true;
+        byId("error").hidden = false;
+      };
+
+      const openReport = async () => {
+        try {
+          const keyText = location.hash.slice(1);
+          if (!keyText) throw new Error("missing key");
+
+          const key = await crypto.subtle.importKey(
+            "raw",
+            fromBase64Url(keyText),
+            { name: "AES-GCM" },
+            false,
+            ["decrypt"],
+          );
+          const plaintext = await crypto.subtle.decrypt(
+            {
+              name: "AES-GCM",
+              iv: fromBase64Url(ivText),
+              additionalData: new TextEncoder().encode(reportId),
+              tagLength: 128,
+            },
+            key,
+            fromBase64Url(ciphertextText),
+          );
+          const report = JSON.parse(new TextDecoder().decode(plaintext));
+          if (!validateReport(report)) throw new Error("invalid report");
+
+          setText("report-number", report.reportNumber);
+          setText("company", report.company);
+          setText("sample-name", report.sampleName);
+          setText("model-spec", report.modelSpec);
+          setText("report-date", report.reportDate);
+          setText("query-time", queryTime());
+          document.title = `检测报告查询 - ${report.reportNumber}`;
+
+          byId("loading").hidden = true;
+          byId("error").hidden = true;
+          byId("report-content").hidden = false;
+        } catch {
+          showError();
+        }
+      };
+
+      openReport();
+    })();
+  </script>
+</body>
+</html>
